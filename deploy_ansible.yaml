@@ -16,6 +16,6 @@
       command: nohup /opt/apache-tomcat-8.5.91/bin/startup.sh
     - name: copy artifact from ansible master to tomcat server
       copy:
-        src: /etc/ansible/playbook/webapp/target/webapp.war
+        src: /etc/ansible/playbook/webapp/target/*.war
         dest: /opt/apache-tomcat-8.5.91/webapps
         remote_src: yes
