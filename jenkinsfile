@@ -9,7 +9,7 @@ stages
     }
     stage ('creating artifacts')
     {
-        steps {withMaven(jdk: 'Java-home', maven: 'MVN-Home') {
+        steps {withMaven(jdk: 'JAVA-HOME', maven: 'Maven_Home') {
     sh 'mvn package'
     }}
     }
