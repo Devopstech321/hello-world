@@ -12,6 +12,10 @@
         src: /opt/apache-tomcat-8.5.91.tar.gz
         dest: /opt
         remote_src: yes
+    - name: install java
+      apt:
+        name: java-11
+        state: present
     - name: start tomcat service
       command: nohup /opt/apache-tomcat-8.5.91/bin/startup.sh
     - name: copy artifact from ansible master to tomcat server
