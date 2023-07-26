@@ -1,5 +1,5 @@
 ---
-- host: My_Group
+- hosts: My_Group
   become_user: ansadmin
   become: true
   tasks:
