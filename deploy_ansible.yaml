@@ -1,5 +1,7 @@
 ---
 - host: My_Group
+  become_user: ansadmin
+  become: true
   tasks:
     - name: copy tomcat tar.gz file from remote
       get_url:
