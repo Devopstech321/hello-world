@@ -1,0 +1,21 @@
+pipeline
+{
+agent any
+stages
+{
+    stage ('copy code from github')
+    {
+        steps {git branch: 'master', url: 'https://github.com/Devopstech321/maven-jenkin-pipeline'}
+    }
+    stage ('unit test framework')
+    {
+        steps {withMaven(jdk: 'Java-home', maven: 'MVN-Home') {
+    sh 'mvn test'
+    }}
+    }
+    stage ('creating artifacts')
+    {
+        steps {withMaven(jdk: 'Java-home', maven: 'MVN-Home') {
+    sh 'mvn package'
+    }}
+    }
