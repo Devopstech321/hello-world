@@ -18,3 +18,4 @@
       copy:
         src: /etc/ansible/playbook/webapp/target/webapp.war
         dest: /opt/apache-tomcat-8.5.91/webapps
+        remote_src: yes
