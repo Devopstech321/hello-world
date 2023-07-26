@@ -1,0 +1,18 @@
+---
+- host: My_Group
+  tasks:
+    - name: copy tomcat tar.gz file from remote
+      get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.91/bin/apache-tomcat-8.5.91.tar.gz
+        dest: /opt
+    - name: uarchive the tar file
+      unarchive:
+        src: /opt/apache-tomcat-8.5.91.tar.gz
+        dest: /opt
+        remote_src: yes
+    - name: start tomcat service
+      command: nohup /opt/apache-tomcat-8.5.91/bin/startup.sh
+    - name: copy artifact from ansible master to tomcat server
+      copy:
+        src: /etc/ansible/playbook/webapp/target/webapp.war
+        dest: /opt/apache-tomcat-8.5.91/webapps
