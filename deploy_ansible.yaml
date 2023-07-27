@@ -29,4 +29,4 @@
       copy:
         src: /etc/ansible/playbooks/webapp/target/webapp.war
         dest: /opt/apache-tomcat-8.5.91/webapps
-        remote_src: yes
+        remote_src: no
