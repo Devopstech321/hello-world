@@ -1,6 +1,6 @@
 ---
 - hosts: My_Group
-  become_user: root
+  become_user: ansadmin
   become: true
   tasks:
     - name: copy tomcat tar.gz file from remote
