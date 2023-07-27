@@ -1,6 +1,6 @@
 ---
 - hosts: My_Group
-  become_user: ansadmin
+  become_user: root
   become: true
   tasks:
     - name: copy tomcat tar.gz file from remote
@@ -20,6 +20,9 @@
       vars:
         packages:
           - openjdk-11-jdk
+    - name: change port
+      lineinfile: dest=/opt/apache-tomcat-8.5.91/conf/server.xml regexp='Connector port="8080"' line="<Connector port="8081""      
+          
     - name: start tomcat service
       command: nohup /opt/apache-tomcat-8.5.91/bin/startup.sh
     - name: copy artifact from ansible master to tomcat server
