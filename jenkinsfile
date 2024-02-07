@@ -3,12 +3,16 @@ pipeline{
     stages
     {
         stage('scm checkout')
-        {steps{git branch: 'master', url: 'https://github.com/Devopstech321/hello-world.git'}}
+        {
+            steps{git branch: 'master', url: 'https://github.com/Devopstech321/hello-world.git'}}
         stage('create artifact')
         {
             steps{withMaven(jdk: 'JAVA-HOME', maven: 'MAVN-HOME') {
-    sh 'mvn clean package'
-}}
+    sh 'mvn clean package'}}
         }
+        stage('upload artifact')
+        {steps{sshagent(['tomcat-ssh']) {
+  sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/job2-pipeline/webapp/target/webapp.war ec2-user@172.31.34.64:/opt/tomcat/apache-tomcat-9.0.85/webapps'
+}}}
         }
 }
