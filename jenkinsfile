@@ -10,9 +10,8 @@ pipeline{
             steps{withMaven(jdk: 'JAVA-HOME', maven: 'MAVN-HOME') {
     sh 'mvn clean package'}}
         }
-        stage('upload artifact')
-        {steps{sshagent(['tomcat-ssh']) {
-  sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/job2-pipeline/webapp/target/webapp.war ec2-user@172.31.34.64:/opt/tomcat/apache-tomcat-9.0.85/webapps'
-}}}
+        stage ('docker image')
+        {steps{sh 'docker build -t 123doc123/dockerci .'}
+}
         }
 }
